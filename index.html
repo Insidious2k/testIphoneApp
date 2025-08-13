@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0d6efd" />
+    <link rel="manifest" href="manifest.json" />
+    <title>Workout Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 { color: #0d6efd; }
+        .entry {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <h1>Workout Tracker</h1>
+    <input id="exercise" placeholder="Exercise" />
+    <input id="reps" type="number" placeholder="Reps" />
+    <button onclick="addWorkout()">Add</button>
+
+    <div id="log"></div>
+
+    <script>
+        let log = JSON.parse(localStorage.getItem("workouts") || "[]");
+
+        function render() {
+            document.getElementById("log").innerHTML = log
+                .map(w => `<div class='entry'>${w.exercise} - ${w.reps} reps</div>`)
+                .join("");
+        }
+
+        function addWorkout() {
+            const exercise = document.getElementById("exercise").value;
+            const reps = document.getElementById("reps").value;
+            if (!exercise || !reps) return;
+            log.push({ exercise, reps });
+            localStorage.setItem("workouts", JSON.stringify(log));
+            render();
+            document.getElementById("exercise").value = "";
+            document.getElementById("reps").value = "";
+        }
+
+        render();
+
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("service-worker.js");
+        }
+    </script>
+</body>
+</html>
