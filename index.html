@@ -19,6 +19,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #808080;
 }
 
 .frame-container {
@@ -56,7 +57,7 @@ iframe {
     const vh = window.visualViewport ? window.visualViewport.height : document.documentElement.clientHeight;
 
     // Scale slightly larger to offset Safari safe-area and zoom quirks
-    const scale = Math.min(vw / iframeW, vh / iframeH) * 1;
+    const scale = Math.min(vw / iframeW, vh / iframeH) * 1.1;
 
     iframe.style.transform = `translateX(-50%) scale(${scale})`;
   }
