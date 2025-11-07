@@ -10,23 +10,42 @@
   <title>Driver Test</title>
 
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      background: #fff;
-      overflow: hidden;
-    }
+ body {
+  margin: 0;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  background: #fff;
+  height: 100dvh;
+  width: 100vw;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-    iframe {
-      border: none;
-      width: 100vw;
-      height: 100vh;
-    }
-    
+.frame-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  overflow: hidden;
+}
+
+iframe {
+  border: none;
+  width: 650px;
+  height: 1000px;
+  transform-origin: top center;
+  transform: scale(calc(min(100vw / 650, 100dvh / 1000)));
+}
+
   </style>
 </head>
 <body>
-  <iframe SRC="https://www.kvizmajster.sk/!vodicak5.php" style="border:0px" WIDTH=650 HEIGHT=1000 FRAMEBORDER=0px></iframe>
+    <div class="frame-container">
+<iframe SRC="https://www.kvizmajster.sk/!vodicak5.php"></iframe> 
+    </div>
 </body>
 </html>
+
