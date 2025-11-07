@@ -1,6 +1,6 @@
 {
-    "name": "Workout Tracker",
-    "short_name": "Workouts",
+    "name": "Autoskola Testy",
+    "short_name": "Testy",
     "start_url": "index.html",
     "display": "standalone",
     "background_color": "#ffffff",
@@ -13,3 +13,4 @@
         }
     ]
 }
+
