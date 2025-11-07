@@ -14,8 +14,8 @@
   margin: 0;
   padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
   background: #fff;
-  height: 100dvh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -35,17 +35,16 @@
 iframe {
   border: none;
   width: 650px;
-  height: 1000px;
+  height: 1320px;
   transform-origin: top center;
-  transform: scale(calc(min(100vw / 650, 100dvh / 1000)));
+  zoom: 70%;
 }
 
   </style>
 </head>
 <body>
     <div class="frame-container">
-<iframe SRC="https://www.kvizmajster.sk/!vodicak5.php"></iframe> 
+<iframe SRC="https://www.kvizmajster.sk/!vodicak5.php" allowfullscreen=true></iframe> 
     </div>
 </body>
 </html>
-
