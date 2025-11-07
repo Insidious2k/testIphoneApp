@@ -26,13 +26,12 @@ body {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  padding-left: 10%;
 }
 
 iframe {
   position: absolute;
   top: env(safe-area-inset-top);
-  left: 50%;
+  left: 53.5%;
   width: 650px;
   height: 1320px;
   border: none;
@@ -57,7 +56,7 @@ iframe {
     const vh = window.visualViewport ? window.visualViewport.height : document.documentElement.clientHeight;
 
     // Scale slightly larger to offset Safari safe-area and zoom quirks
-    const scale = Math.min(vw / iframeW, vh / iframeH) * 1.2;
+    const scale = Math.min(vw / iframeW, vh / iframeH) * 1;
 
     iframe.style.transform = `translateX(-50%) scale(${scale})`;
   }
@@ -68,4 +67,3 @@ iframe {
 </script>
 </body>
 </html>
-
