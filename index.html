@@ -10,20 +10,18 @@
   <title>Driver Test</title>
 
   <style>
-    body {
-      margin: 0;
-      padding: env(safe-area-inset-top) env(safe-area-inset-right)
-               env(safe-area-inset-bottom) env(safe-area-inset-left);
-      background: #fff;
-      height: 100dvh;
-      width: 100vw;
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+body {
+  margin: 0;
+  background: #fff;
+  height: 100dvh;
+  width: 100vw;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-    .frame-container {
+.frame-container {
   position: relative;
   width: 100%;
   height: 100%;
@@ -32,15 +30,14 @@
 
 iframe {
   position: absolute;
-  top: 0;
+  top: env(safe-area-inset-top);
   left: 50%;
-  transform-origin: top center;
-  border: none;
   width: 650px;
   height: 1320px;
+  border: none;
+  transform-origin: top center;
   transition: transform 0.2s ease;
 }
-
   </style>
 </head>
 <body>
@@ -54,21 +51,19 @@ iframe {
     const iframeW = 650;
     const iframeH = 1320;
 
+    // Use the visual viewport for real iOS dimensions
     const vw = window.visualViewport ? window.visualViewport.width : document.documentElement.clientWidth;
     const vh = window.visualViewport ? window.visualViewport.height : document.documentElement.clientHeight;
 
-    const scale = Math.min(vw / iframeW, vh / iframeH);
+    // Scale slightly larger to offset Safari safe-area and zoom quirks
+    const scale = Math.min(vw / iframeW, vh / iframeH) * 1.25;
 
-    // Center horizontally without layout shift
-    const translateX = "-50%";
-    iframe.style.transform = `translateX(${translateX}) scale(${scale})`;
+    iframe.style.transform = `translateX(-50%) scale(${scale})`;
   }
 
   window.addEventListener('load', fitIframe);
   window.addEventListener('resize', fitIframe);
   window.addEventListener('orientationchange', () => setTimeout(fitIframe, 300));
-  </script>
-
-
+</script>
 </body>
 </html>
