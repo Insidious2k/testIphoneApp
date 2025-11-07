@@ -56,7 +56,7 @@ iframe {
     const vh = window.visualViewport ? window.visualViewport.height : document.documentElement.clientHeight;
 
     // Scale slightly larger to offset Safari safe-area and zoom quirks
-    const scale = Math.min(vw / iframeW, vh / iframeH) * 1.25;
+    const scale = Math.min(vw / iframeW, vh / iframeH) * 1.2;
 
     iframe.style.transform = `translateX(-50%) scale(${scale})`;
   }
