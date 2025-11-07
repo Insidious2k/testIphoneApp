@@ -48,23 +48,25 @@
   </div>
 
   <script>
-    function fitIframe() {
-      const iframe = document.querySelector('iframe');
-      const iframeW = 650;
-      const iframeH = 1320;
+  function fitIframe() {
+    const iframe = document.querySelector('iframe');
+    const iframeW = 650;
+    const iframeH = 1320;
 
-      // iOS Safari tends to misreport innerWidth — use clientWidth instead
-      const vw = document.documentElement.clientWidth;
-      const vh = document.documentElement.clientHeight;
+    // Use visual viewport for more reliable Safari dimensions
+    const vw = window.visualViewport ? window.visualViewport.width : document.documentElement.clientWidth;
+    const vh = window.visualViewport ? window.visualViewport.height : document.documentElement.clientHeight;
 
-      // Pick the smaller ratio to preserve full view and add cushion to avoid clipping
-      const scale = Math.min(vw / iframeW, vh / iframeH) * 0.98;
+    // Safari sometimes reports smaller CSS width — apply a light correction factor
+    const scale = Math.min(vw / iframeW, vh / iframeH) * 1.15; // 1.1–1.15 sweet spot
 
-      iframe.style.transform = `scale(${scale})`;
-    }
+    iframe.style.transform = `scale(${scale})`;
+  }
 
-    window.addEventListener('load', fitIframe);
-    window.addEventListener('resize', fitIframe);
-  </script>
+  window.addEventListener('load', fitIframe);
+  window.addEventListener('resize', fitIframe);
+  window.addEventListener('orientationchange', () => setTimeout(fitIframe, 300));
+</script>
+
 </body>
 </html>
